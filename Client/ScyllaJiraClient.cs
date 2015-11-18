@@ -12,22 +12,18 @@ namespace Scylla
         public IssuesModule Issues { get { return _issues; } }
         public ProjectsModule Projects { get { return _projects; } }
 
-        private string _username;
-        private string _password;
         private IssuesModule _issues;
         private ProjectsModule _projects;
         private RestClient _client;
 
         public ScyllaJiraClient(string username, string password)
         {
-            this._username = username;
-            this._password = password;
             this._client = new RestClient(BaseURL);
             this._issues = new IssuesModule(this);
             this._projects = new ProjectsModule(this);
 
-            if (_username != "" && _password != "")
-                _client.Authenticator = new HttpBasicAuthenticator(_username, _password);
+            if (username != "" && password != "")
+                _client.Authenticator = new HttpBasicAuthenticator(username, password);
             else
                 throw new Exception("Invalid Username/Password");
         }
