@@ -1,4 +1,5 @@
 ﻿using RestSharp;
+using RestSharp.Extensions.MonoHttp;
 
 namespace Scylla.Modules
 {

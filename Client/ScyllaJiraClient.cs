@@ -1,5 +1,6 @@
 ﻿using RestSharp;
 using RestSharp.Authenticators;
+using RestSharp.Extensions.MonoHttp;
 using Scylla.Modules;
 using System;
 
@@ -43,5 +44,13 @@ namespace Scylla
         {
             return _client.Execute(request);
         }
+
+        // TODO: Trying out custom JQL queries
+        public T ExecuteJQL<T>(string jqlQuery) where T : new()
+        {
+            var request = new RestRequest(HttpUtility.HtmlEncode(string.Format("search?jql={0}", jqlQuery)));
+            return Execute<T>(request);
+        }
+
     }
 }

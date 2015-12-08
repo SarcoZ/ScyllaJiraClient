@@ -50,11 +50,9 @@ namespace Scylla.Modules
             return _client.Execute<WorkLogResponse>(request);
         }
 
-        // Testing JQL queries
         public IssueResult GetIssuesByProject(string projectKey, int maxResults = 150)
         {
-            var request = new RestRequest(HttpUtility.HtmlEncode(string.Format("search?jql=project={0}&maxResults={1}", projectKey, maxResults)));
-            return _client.Execute<IssueResult>(request);
+            return _client.ExecuteJQL<IssueResult>(string.Format("project={0}&maxResults={1}", projectKey, maxResults));
         }
 
     }
