@@ -16,4 +16,16 @@ string json = issue2.Content;
 
 // Create issue
 CreateIssueResponse issue3 = client.Issues.CreateIssue("AT", "First Issue", "Description of the issue...");
+
+// Find all worklog entries
+result.issues.ForEach(issue => {
+  WorkLogResponse resp = client.Issues.GetIssueWorklogs(issue.key);
+  if (resp.total > 0) 
+  {
+    Console.WriteLine(issue.key + " - " + issue.fields.summary);
+    resp.worklogs.ForEach(wl => {
+      Console.WriteLine("\t" + wl.author.displayName + " spent " + wl.timeSpent + " on " + wl.created.ToShortDateString());
+    });
+  }
+});
 ```
