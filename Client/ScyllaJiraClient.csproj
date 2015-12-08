@@ -49,6 +49,7 @@
     <Compile Include="Models\CreateIssueResponse.cs" />
     <Compile Include="Models\CreateIssuePost.cs" />
     <Compile Include="Models\Issue.cs" />
+    <Compile Include="Models\Worklog.cs" />
     <Compile Include="Modules\Issues.cs" />
     <Compile Include="Modules\Projects.cs" />
     <Compile Include="Modules\BaseModule.cs" />

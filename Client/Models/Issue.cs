@@ -2,6 +2,19 @@
 
 namespace Scylla.Models
 {
+    // FIXME: for JQL queries
+    public class IssueResult
+    {
+        public int maxResults { get; set; }
+        public int total { get; set; }
+        public List<Issue> issues { get; set; }
+
+        public IssueResult()
+        {
+            issues = new List<Issue>();
+        }
+    }
+
     public class Issue
     {
         public int id { get; set; }
@@ -24,12 +37,14 @@ namespace Scylla.Models
         public Project project { get; set; }
         public IssueComment comment { get; set; }
         public IssueType issuetype { get; set; }
+        public WorkLogResponse worklog { get; set; }
 
         public IssueFields()
         {
             this.project = new Project();
             this.comment = new IssueComment();
             this.issuetype = new IssueType();
+            this.worklog = new WorkLogResponse();
         }
     }
 
